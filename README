@@ -1,2 +1,16 @@
+i'll use Code::Blocks, since it is portable and everything..... also, i love it ^_^
+if you want to use a different developement environment...  please do.
+this project uses SFML, therefore you should set up your ide accordingly.
+source goes to src, documentary goes to doc.
+maybe i will make it more modular later... at the moment i dont see the point in splitting the code into modules.
+classes should be enough... also there is no code yet... except that test thing to test wether SFML works.
 
-look in the damn doc folder you idiot
+at the moment sfml 1.6 is the most recent version available. or at least im using it at the moment.
+
+also i hope i can keep it pretty portable... i plan to write the source on a windows box and on a ubuntu box...
+im not sure if that will go well, but maybe its going to be allright
+
+mail me in case of any questions
+
+kamisori.kun@gmail.com
+
