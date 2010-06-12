@@ -1,51 +1,67 @@
 #ifndef SPACIALOBJECT_HPP
 #define SPACIALOBJECT_HPP
 
+#include <string>
 #include <SFML/System.hpp>
 #include <shtf/visualAppearance.hpp>
+
 namespace shtf
 {
-    class Collision
-    {
-    	public:
-    		Collision( bool collides, float radius );
-    		Collision();
-    		~Collision();
-    	protected:
-
-    	private:
-    		bool  collides_;
-    		float collisionRadius_;
-    };
-
     enum PositionInZ {FLOOR, FOOT, WAIST, HEAD, FOOTWAIST, FOOTHEAD, WAISTHEAD};
     class SpacialObject
     {
     	public:
 
-            setPosition();
-    		SpacialObject( string* objectId );
+            void calculateNewPosition( float elapsedMsec );
+            void moveObject( sf::Vector2f addThis );
+            void turnObjectAround( float amount );
+            void setCollision( bool collision );
+//            void heatUp( float factor );
+//            void coolDown( float factor );
+//            void wet( float factor );
+//            void dry( float factor );
+            void accelerate( sf::Vector2f factor );      //??
+            void slowDown( sf::Vector2f factor );        //friction
+
+    		SpacialObject(
+                            std::string* objectId,
+                            PositionInZ posZ,
+                            float collisionR,
+                            float objectHealth,
+                            float objectHardness,
+                            float fireResist,
+                            float temperature,
+
+                            std::string* visualAppearanceId
+                            //string* audialAppearanceId
+                           );
+
     		SpacialObject();
     		~SpacialObject();
     	protected:
 
     	private:
-            const string*       objectId_;
-    		sf::Vector2f        position_;
-    		PositionInZ         positionZ_;
+            const std::string*       objectId_;
 
-    		float               objectHealth_;              //objects can be damaged
-    		float               objectHardness_;            //some objects resist damage better than others
+    		sf::Vector2f        position_;
+            PositionInZ         positionZ_;
+
+    		bool                collides_;                  //objects don't collide with objects they are attached to.
+    		float               collisionRadius_;           //which means, that there wont be a check neccessary when
+                                                            //something is attached to another object. this flag here still applies to the rest of the gameworld
+
+//    		float               objectHealth_;              //objects can be damaged
+//    		float               objectHardness_;            //some objects resist damage better than others
                                                             //combined with collision, this means, you can
                                                             //use anything and everything as a shield against attacks.
 
-            float               fireResistance_;            //wood burns, steel doesn't.
-            float               temperature_;               //might be implemented, heat stuff up to make them softer,
+//            float               fireResistance_;            //wood burns, steel doesn't.
+//            float               temperature_;               //might be implemented, heat stuff up to make them softer,
                                                             //also might do damage to other objects.
 
     		float               orientation_;
-    		sf::Vector2f        velocity_;
-    		sf::Vector2f        acceleration_;
+    		sf::Vector2f        velocity_;                  //momentum, velocity in pixel/s one pixel is roughly 0.5cm
+    		sf::Vector2f        acceleration_;              //propelled by something?
 
             VisualAppearance*   visualAppearance_;          //null means, this is either a zone for a script,
                                                             //or something is attached to the ground, like a
@@ -54,9 +70,7 @@ namespace shtf
             //AudioAppearance*    audialAppearance_;        //basically the same as visualAppearance.
                                                             //holds the samples this objects can play.
 
-            Collision*          objectCollision_;           //objects don't collide with objects they are attached to.
-
-            //Attachment*       attachedTo_;                //Attach one Object to another
+            //Attachment*         attachedTo_;              //Attach one Object to another
                                                             //in example: Flashlight to Shovel
                                                             //attachmentStrength determines if object can be removed
                                                             //objectHealth must be higher than attachment strength, else object breaks during removal
@@ -65,4 +79,5 @@ namespace shtf
             //Script*           objectScript_;
     };
 }
+
 #endif
