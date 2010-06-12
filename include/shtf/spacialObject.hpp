@@ -1,14 +1,14 @@
 #ifndef SPACIALOBJECT_HPP
 #define SPACIALOBJECT_HPP
 
-#include <SFML/Vector2.hpp>
+#include <SFML/System.hpp>
 #include <shtf/visualAppearance.hpp>
-
 namespace shtf
 {
     class Collision
     {
     	public:
+    		Collision( bool collides, float radius );
     		Collision();
     		~Collision();
     	protected:
@@ -18,18 +18,21 @@ namespace shtf
     		float collisionRadius_;
     };
 
-    enum height {FLOOR, FOOT, WAIST, HEAD, FOOTWAIST, FOOTHEAD, WAISTHEAD};
+    enum PositionInZ {FLOOR, FOOT, WAIST, HEAD, FOOTWAIST, FOOTHEAD, WAISTHEAD};
     class SpacialObject
     {
     	public:
+
+            setPosition();
+    		SpacialObject( string* objectId );
     		SpacialObject();
     		~SpacialObject();
     	protected:
 
     	private:
-            string              objectId_;
+            const string*       objectId_;
     		sf::Vector2f        position_;
-    		height              positionZ_;
+    		PositionInZ         positionZ_;
 
     		float               objectHealth_;              //objects can be damaged
     		float               objectHardness_;            //some objects resist damage better than others

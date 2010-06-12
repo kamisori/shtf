@@ -46,9 +46,14 @@
 		<Unit filename="include\shtf\animation.hpp" />
 		<Unit filename="include\shtf\spacialObject.hpp" />
 		<Unit filename="include\shtf\visualAppearance.hpp" />
+		<Unit filename="src\animation.cpp" />
 		<Unit filename="src\main.cpp" />
+		<Unit filename="src\spacialObject.cpp" />
+		<Unit filename="src\visualAppearance.cpp" />
 		<Extensions>
-			<code_completion />
+			<code_completion>
+				<search_path add="D:\work\shtf\" />
+			</code_completion>
 			<debugger />
 		</Extensions>
 	</Project>
