@@ -18,8 +18,12 @@ namespace shtf
 
             void SpacialObject::moveObject( sf::Vector2f addThis )
             {
-                this->position_.x += addThis.x;
-                this->position_.y += addThis.y;
+                this->position_.position_.x += addThis.x;
+                this->position_.position_.y += addThis.y;
+            }
+
+            void SpacialObject::warpObject( sf::Vector2f newPosition ){
+                this->position_.position_ = newPosition;
             }
 
             void SpacialObject::turnObjectAround( float amount )
@@ -27,7 +31,7 @@ namespace shtf
                 this->orientation_ += amount;
                 while( this->orientation_ >= 1.0 )
                 {
-                    this->orientation_ --;
+                    this->orientation_ -= 1.0;
                 }
             }
 
@@ -44,21 +48,32 @@ namespace shtf
 //            void SpacialObject::slowDown( sf::Vector2f factor )        //friction
 
     		SpacialObject::SpacialObject(
-                            std::string* objectId,
+                            std::string* spacialObjectId,
                             PositionInZ posZ,
                             float collisionR,
-                            float objectHealth,
-                            float objectHardness,
-                            float fireResist,
-                            float temperature,
+
+//                            float objectHealth,
+//                            float objectHardness,
+//                            float fireResist,
+//                            float temperature,
 
                             std::string* visualAppearanceId
                             //string* audialAppearanceId
                            )
             {
-                this->objectId_ = objectId;
-                this->positionZ_ = posZ;
+                this->spacialObjectId_ = spacialObjectId;
+                this->position_.position_.x = 0;
+                this->position_.position_.y = 0;
+                this->position_.positionZ_ = posZ;
+
                 this->collisionRadius_ = collisionR;
+                this->acceleration_.x = 0;
+                this->acceleration_.y = 0;
+                this->velocity_.x = 0;
+                this->velocity_.y = 0;
+                this->collides_ = false;
+                this->orientation_ = 0;
+
 //                this->visualAppearance_ =;
             }
 
@@ -70,7 +85,7 @@ namespace shtf
 
     		SpacialObject::~SpacialObject()
             {
-                //delete this->visualAppearance_;
+//                delete this->visualAppearance_;
             }
 
 }

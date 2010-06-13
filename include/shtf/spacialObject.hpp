@@ -8,12 +8,19 @@
 namespace shtf
 {
     enum PositionInZ {FLOOR, FOOT, WAIST, HEAD, FOOTWAIST, FOOTHEAD, WAISTHEAD};
+    struct PositionInGame
+    {
+            sf::Vector2f        position_;
+            PositionInZ         positionZ_;
+    };
+
     class SpacialObject
     {
     	public:
 
             void calculateNewPosition( float elapsedMsec );
             void moveObject( sf::Vector2f addThis );
+            void warpObject( sf::Vector2f newPosition );
             void turnObjectAround( float amount );
             void setCollision( bool collision );
 //            void heatUp( float factor );
@@ -24,13 +31,14 @@ namespace shtf
             void slowDown( sf::Vector2f factor );        //friction
 
     		SpacialObject(
-                            std::string* objectId,
+                            std::string* spacialObjectId,
                             PositionInZ posZ,
                             float collisionR,
-                            float objectHealth,
-                            float objectHardness,
-                            float fireResist,
-                            float temperature,
+
+//                            float objectHealth,
+//                            float objectHardness,
+//                            float fireResist,
+//                            float temperature,
 
                             std::string* visualAppearanceId
                             //string* audialAppearanceId
@@ -41,15 +49,15 @@ namespace shtf
     	protected:
 
     	private:
-            const std::string*       objectId_;
+            const std::string*       spacialObjectId_;
 
-    		sf::Vector2f        position_;
-            PositionInZ         positionZ_;
+    		PositionInGame      position_;
 
     		bool                collides_;                  //objects don't collide with objects they are attached to.
     		float               collisionRadius_;           //which means, that there wont be a check neccessary when
                                                             //something is attached to another object. this flag here still applies to the rest of the gameworld
 
+//          float               objectMass_;
 //    		float               objectHealth_;              //objects can be damaged
 //    		float               objectHardness_;            //some objects resist damage better than others
                                                             //combined with collision, this means, you can
@@ -76,7 +84,8 @@ namespace shtf
                                                             //objectHealth must be higher than attachment strength, else object breaks during removal
                                                             //orientation relative to attached object
                                                             //attached at top, bottom, hind, front, one side or the other
-            //Script*           objectScript_;
+
+            //Script*             objectScript_;            //also for AI
     };
 }
 
