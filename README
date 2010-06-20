@@ -33,5 +33,10 @@ People who know how to read maps and use a compas will most likely benefit from 
 rotate around the playercharacter as he turns around in the game. this way the player will sooner or later need to find 
 or buy a compass, because north won't be "up" on the screen at all times. maybe we will have shadows from the map 
 architecture depending on the suns height and position in the sky. as a secondary indicator of heading.
+
+We might make this game's leveldata 3d, while keeping the characters 2d, just like in ragnarok online, to make it easier
+to visualize a gap in a wall to the player, on the other hand, the game would be easier to make in general if we stayed in 2d.
+
+
 also the player will be positioned at the bottom edge of the screen. thus denying the player to see what is behind 
 him/her.
