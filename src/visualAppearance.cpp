@@ -7,12 +7,12 @@
 
 namespace shtf
 {
-    void VisualAppearance::currentAnimationByAnimationId( std::string* animationId )
+    void VisualAppearance::currentAnimationByAnimationId( std::string animationId )
     {
-        std::vector< Animation*>::iterator it;
+        std::vector< Animation* >::iterator it;
         for( it = possibleAnimations_.begin(); it < possibleAnimations_.end(); it++ )
         {
-            if( animationId->compare( (*it)->getAnimationId() ) == 0 )
+            if( animationId.compare( (*it)->getAnimationId() ) == 0 )
             {
                 this->currentAnimation_ = *it;
             }
@@ -25,11 +25,16 @@ namespace shtf
         return this->currentAnimation_;
     }
 
-    VisualAppearance::VisualAppearance( std::string* visualAppearanceId, std::string* animationsDescriptionFile )
+    std::string VisualAppearance::getVisualAppearanceId()
     {
-        this->visualAppearanceId_ = visualAppearanceId;
+        return (*visualAppearanceId_);
+    }
 
-        std::ifstream ifs( (const char*)animationsDescriptionFile, std::ifstream::in );
+    VisualAppearance::VisualAppearance( std::string visualAppearanceId, std::string animationsDescriptionFile )
+    {
+        this->visualAppearanceId_ = &visualAppearanceId;
+
+        std::ifstream ifs( animationsDescriptionFile.c_str(), std::ifstream::in );
 
         char* buffer;
         int length;

@@ -9,10 +9,11 @@ namespace shtf
     class VisualAppearance
     {
         public:
-            void        currentAnimationByAnimationId( std::string* animationId );
+            void        currentAnimationByAnimationId( std::string animationId );
             Animation*  currentAnimation();
+            std::string getVisualAppearanceId();
 
-            VisualAppearance( std::string* visualAppearanceId, std::string* animationsDescriptionFile );
+            VisualAppearance( std::string visualAppearanceId, std::string animationsDescriptionFile );
             VisualAppearance();
             ~VisualAppearance();
         protected:

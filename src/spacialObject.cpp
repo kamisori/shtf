@@ -2,7 +2,8 @@
 #include <SFML/System.hpp>
 #include <shtf/visualAppearance.hpp>
 #include <shtf/spacialObject.hpp>
-
+#include <shtf/gameObjectManager.hpp>
+#include <shtf/main.hpp>
 namespace shtf
 {
             void SpacialObject::calculateNewPosition( float elapsedMsec )
@@ -74,7 +75,12 @@ namespace shtf
                 this->collides_ = false;
                 this->orientation_ = 0;
 
-//                this->visualAppearance_ =;
+                this->visualAppearance_ = globalGameObjectManager.provideVisualAppearance( visualAppearanceId );
+
+                if( this->visualAppearance_ == NULL )
+                {
+                    //throw exception
+                }
             }
 
 

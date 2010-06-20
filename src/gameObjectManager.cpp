@@ -10,6 +10,16 @@ namespace shtf{
 
     VisualAppearance* GameObjectManager::provideVisualAppearance( std::string* visualAppearanceId )
     {
+        std::vector< VisualAppearance* >::iterator it;
+        for( it = this->visualAppearancesLibrary_.begin(); it < this->visualAppearancesLibrary_.end(); it++ )
+        {
+            if( visualAppearanceId->compare( (*it)->getVisualAppearanceId() ) == 0 )
+            {
+                return (*it);
+            }
+        }
+        //throw exception
+        return NULL;
     }
 
 //    AudioAppearance* GameObjectManager::provideAudioAppearance( std::string* audioAppearanceId )
@@ -30,7 +40,7 @@ namespace shtf{
         ifs.close();
 
         std::string tmp = buffer;
-        //running_fox;fox1.bmp;3;5;
+        //brownfoxforspawn;0.0;0.0;floor;0.0;true;0.5;brownfox
         int lastPos = 0;
         while( tmp.find(';') != std::string::npos )
         {
@@ -83,27 +93,47 @@ namespace shtf{
     void GameObjectManager::loadVisualAppearances( std::string* visualAppearanceFile )
     {
 
+        std::ifstream ifs( (const char*)visualAppearanceFile, std::ifstream::in );
+
+        char* buffer;
+        int length;
+
+        ifs.seekg( 0,std::ios::end );
+        length = ifs.tellg();
+        ifs.seekg( 0,std::ios::beg );
+        buffer = new char[ length ];
+        ifs.read( buffer, length );
+        ifs.close();
+
+        std::string tmp = buffer;
+        //running_fox;fox1.bmp;3;5;
+        int lastPos = 0;
+        while( tmp.find(';') != std::string::npos )
+        {
+            int idFound = tmp.find(';', lastPos);
+            int fileFound = tmp.find(';',idFound);
+
+            std::string visId = tmp.substr(lastPos, idFound);
+            std::string animFile = tmp.substr(idFound, fileFound);
+
+            VisualAppearance* temporaryVisualAppearance = new VisualAppearance( visId, animFile );
+
+            this->visualAppearancesLibrary_.push_back( temporaryVisualAppearance );
+        }
+
+        delete[] buffer;
     }
 
 //    void GameObjectManager::loadAudioAppearances( std::string* audioAppearanceFile )
 
     GameObjectManager::GameObjectManager()
     {
-
     }
 
     GameObjectManager::~GameObjectManager()
     {
-
+        this->allSpacialObjects_.clear();
+        this->occupiedByObjects_.clear();
+        this->visualAppearancesLibrary_.clear();
     }
-
-/*
-    	private:
-    	std::vector< PositionInGame >                               occupiedByObjects_;
-    	std::map< PositionInGame, std::vector< SpacialObject* > >   allSpacialObjects_;
-    	std::vector< VisualAppearance* >                            visualAppearancesLibrary_;
-//    	std::vector< AudioAppearance* >                             audioAppearancesLibrary_;
-//      std::vector< Script* >                                      scriptLibrary_;
-*/
-
 }

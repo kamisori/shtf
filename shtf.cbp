@@ -45,6 +45,7 @@
 		</Compiler>
 		<Unit filename="include\shtf\animation.hpp" />
 		<Unit filename="include\shtf\gameObjectManager.hpp" />
+		<Unit filename="include\shtf\main.hpp" />
 		<Unit filename="include\shtf\spacialObject.hpp" />
 		<Unit filename="include\shtf\visualAppearance.hpp" />
 		<Unit filename="src\animation.cpp" />

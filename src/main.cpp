@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/System.hpp>
+#include <shtf/gameObjectManager.hpp>
 
 int main()
 {
