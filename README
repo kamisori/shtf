@@ -1,42 +1,33 @@
-i'll use Code::Blocks, since it is portable and everything..... also, i love it ^_^
-if you want to use a different developement environment...  please do.
 this project uses SFML, therefore you should set up your ide accordingly.
 source goes to src, documentary goes to doc.
 maybe i will make it more modular later... at the moment i dont see the point in splitting the code into modules.
 classes should be enough... also there is no code yet... except that test thing to test wether SFML works.
-
-at the moment sfml 1.6 is the most recent version available. or at least im using it at the moment.
-
-also i hope i can keep it pretty portable... i plan to write the source on a windows box and on a ubuntu box...
-im not sure if that will go well, but maybe its going to be allright
 
 mail me in case of any questions
 
 kamisori.kun@gmail.com
 
 
-
-
-
 ABOUT THE GAME
 ==============
 
 In "shit hit the fan" you start as a normal person with a normal job. You go on with your daily life as usual, go to 
-work or school, go home, eat, sleep, shop for groceries and other things, maybe you decide to create a bug out bag, to 
-be prepared for when shit actually hits the fan.
+work or school, go home, eat, sleep, shop for groceries and other things, maybe you decide to create a bug-out-bag, to 
+be prepared for when shit actually hits the fan. But this is not neccessary. there could be some kind of difficulty level setting in which you start out as an experienced bum and know how to live off your surroundings, while having a job gives you money and the ability to buy yourself some stuff.
+On the other hand, people who have alot stuff tend to get robbed pretty soon.
 
-After some in-game time something more or less rapid will happen, which forces the player to become less dependant on 
-the rest of the population. the event changing the gameplay will be random, might be an ecological desaster, a war or a 
-biological or chemical factor, destroying/damaging the human world.
+choosing your characters gender might happen through deciding to what washroom you go. there might be some kind of street survey in which you answer questions and based on your answers your history is created.
+
+After some in-game time something more or less rapid will happen, which forces the player to become less (or more) dependant on the rest of the population. the event changing the gameplay will be random, might be an ecological desaster, a war or a biological or chemical factor, destroying/damaging the human world.
 
 People who know how to read maps and use a compas will most likely benefit from their knowledge, as the camera will 
 rotate around the playercharacter as he turns around in the game. this way the player will sooner or later need to find 
 or buy a compass, because north won't be "up" on the screen at all times. maybe we will have shadows from the map 
 architecture depending on the suns height and position in the sky. as a secondary indicator of heading.
+Maybe there will be a feat available, which fixes the camera to north-is-up.
 
-We might make this game's leveldata 3d, while keeping the characters 2d, just like in ragnarok online, to make it easier
-to visualize a gap in a wall to the player, on the other hand, the game would be easier to make in general if we stayed in 2d.
-
+We might make this game's leveldata 3d, on the other hand, the game would be easier to make in general if we stayed in 2d.
 
 also the player will be positioned at the bottom edge of the screen. thus denying the player to see what is behind 
 him/her.
+Maybe there will be a feat/skill available to position the player higher on the screen. indicating a hightened awareness
